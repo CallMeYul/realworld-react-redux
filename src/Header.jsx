@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 
-export default function Header(){
+export default function Header({addTodoItem}){
   const [todoInput, setTodoInput] = useState('');
 
   function handleChange(e){
-    console.log(e.target.value);
     setTodoInput(e.target.value)
   }
 
   function handleKeyUp(e){
     if(e.key === "Enter"){
-      // setTodoList(old => [...old, {content: todoInput, completed: false}]);
+      addTodoItem(todoInput);
       setTodoInput('');
     }
   }

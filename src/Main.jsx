@@ -13,12 +13,7 @@ function TodoItem({content, completed}){
   )
 }
 
-export default function Main(){
-  const initialState = [
-    {content: "휴식", completed: false},
-    {content: "식사", completed: true},
-  ];
-  const [todoList, setTodoList] = useState(initialState);
+export default function Main({todoList}){
 
   return (
    <section className="main">
