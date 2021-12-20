@@ -2,11 +2,11 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  resolve: {
-    extensions:['.js','.jsx']
-  },
   entry: './src/index.jsx',
   mode: 'development',
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
+  },
   module: {
     rules: [
       {
