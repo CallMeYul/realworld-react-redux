@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function TodoItem({content, completed}){
   return(
@@ -14,13 +14,18 @@ function TodoItem({content, completed}){
 }
 
 export default function Main(){
+  const initialState = [
+    {content: "휴식", completed: false},
+    {content: "식사", completed: true},
+  ];
+  const [todoList, setTodoList] = useState(initialState);
+
   return (
    <section className="main">
       <input id="toggle-all" className="toggle-all" type="checkbox" checked={false} />
       <label htmlFor="toggle-all"></label>
       <ul className="todo-list">
-        <TodoItem content="잠자기" complete={false}/>
-        <TodoItem content="밥먹기" complete={true}/>
+        {todoList.map(todo => <TodoItem {...todo} />)}
       </ul>
     </section>
   )
