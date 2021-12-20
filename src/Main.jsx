@@ -1,14 +1,14 @@
 import React from 'react';
 
-function TodoItem(){
+function TodoItem({content, completed}){
   return(
-    <li className="complted">
+    <li className={completed ? 'completed' : ''}>
       <div className="view">
-        <input type="checkbox" checked={false} className="toggle" />
-        <label>전화하기</label>
+        <input type="checkbox" checked={completed} className="toggle" />
+        <label>{content}</label>
         <button className="desrtoy"></button>
       </div>
-      <input className="edit" value="전화하기" />
+      <input className="edit" value={content} />
     </li>
   )
 }
@@ -19,8 +19,8 @@ export default function Main(){
       <input id="toggle-all" className="toggle-all" type="checkbox" checked={false} />
       <label htmlFor="toggle-all"></label>
       <ul className="todo-list">
-        <TodoItem />
-        <TodoItem />
+        <TodoItem content="잠자기" complete={false}/>
+        <TodoItem content="밥먹기" complete={true}/>
       </ul>
     </section>
   )
