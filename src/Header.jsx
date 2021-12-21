@@ -4,7 +4,7 @@ export default function Header({addTodoItem}){
   const [todoInput, setTodoInput] = useState('');
 
   function handleChange(e){
-    setTodoInput(e.target.value)
+    setTodoInput(e.target.value);
   }
 
   function handleKeyUp(e){
