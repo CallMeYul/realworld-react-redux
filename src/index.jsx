@@ -1,15 +1,14 @@
+import ReactDOM from "react-dom";
+import React, { useState } from "react";
+import "./style.css";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 
-import ReactDOM from 'react-dom';
-import React, {useState} from 'react';
-import './style.css';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
-
-function App(){
+function App() {
   const initialState = [
-    {id: crypto.randomUUID(), content: "산책", completed: false},
-    {id: crypto.randomUUID(), content: "식사", completed: true},
+    { id: crypto.randomUUID(), content: "산책", completed: false },
+    { id: crypto.randomUUID(), content: "식사", completed: true },
   ];
   /*
   const todoListState = useState(initialState);
@@ -21,29 +20,41 @@ function App(){
   */
   const [todoList, setTodoList] = useState(initialState);
 
-  function addTodoItem(content){
-    const newTodoItem = {id: crypto.randomUUID(), content: content, completed: false};
+  function addTodoItem(content) {
+    const newTodoItem = {
+      id: crypto.randomUUID(),
+      content: content,
+      completed: false,
+    };
     // ... <- spread 연산자로 old를 받은 새로운 배열을 만들면서 newTodoItem 원소 추가
-    setTodoList(old => [...old, newTodoItem]);
+    setTodoList((old) => [...old, newTodoItem]);
   }
 
-  function deleteTodo(targetId){
-      setTodoList(old => old.filter(todo => todo.id !== targetId))
+  function deleteTodo(targetId) {
+    setTodoList((old) => old.filter((todo) => todo.id !== targetId));
   }
 
-  function completeTodo(targetId){
-    setTodoList(old => old.map(todo => todo.id === targetId ? {...todo, completed: !todo.completed} :todo))
+  function completeTodo(targetId) {
+    setTodoList((old) =>
+      old.map((todo) =>
+        todo.id === targetId ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   }
 
-  return(
+  return (
     <section className="todoapp">
       <div>
         <Header addTodoItem={addTodoItem} />
-        <Main todoList={todoList} completeTodo={completeTodo} deleteTodo={deleteTodo} />
-        <Footer />
+        <Main
+          todoList={todoList}
+          completeTodo={completeTodo}
+          deleteTodo={deleteTodo}
+        />
+        <Footer count={todoList.filter((todo) => !todo.completed).length} />
       </div>
     </section>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
